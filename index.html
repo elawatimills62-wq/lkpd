@@ -24,6 +24,21 @@
     <!-- Container Utama -->
     <div class="max-w-4xl mx-auto bg-white shadow-xl rounded-2xl overflow-hidden my-6 border border-slate-200">
         
+        <!-- Header Instansi & Logo Kabupaten Donggala -->
+        <div class="bg-white border-b border-slate-200 px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+            <div class="flex items-center gap-4">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Lambang_Kabupaten_Donggala_%282015-sekarang%29.png" alt="Logo Kabupaten Donggala" class="w-16 h-auto object-contain">
+                <div>
+                    <h2 class="text-xs font-bold text-slate-600 tracking-wider uppercase">PEMERINTAH KABUPATEN DONGGALA</h2>
+                    <h3 class="text-sm font-bold text-slate-800 tracking-wide uppercase">DINAS PENDIDIKAN PEMUDA DAN OLAH RAGA</h3>
+                    <h1 class="text-base font-extrabold text-red-900 uppercase">SDN 8 BANAWA</h1>
+                </div>
+            </div>
+            <div class="text-xs text-slate-500 bg-slate-50 px-3 py-2 rounded-lg border">
+                <span>Tahun Ajaran 2026/2027</span>
+            </div>
+        </div>
+
         <!-- Header LKPD -->
         <div class="bg-blood-header text-white p-6 text-center">
             <span class="bg-red-800 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider border border-red-600">Lembar Kerja Peserta Didik (LKPD) SD Kelas 5/6</span>
@@ -199,7 +214,7 @@
             ev.preventDefault();
             ev.currentTarget.classList.remove('hovered');
             
-            let data = ev.dataTransfer.setData ? ev.dataTransfer.getData("text") : null;
+            let data = ev.dataTransfer.getData ? ev.dataTransfer.getData("text") : null;
             let target = ev.currentTarget;
 
             if (target.children.length > 0 && target.children[0].classList.contains('draggable')) {
