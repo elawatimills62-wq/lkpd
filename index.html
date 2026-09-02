@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LKPD Interaktif: Bagian-Bagian Mata & Kelainannya</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .draggable { cursor: grab; user-select: none; }
+        .draggable:active { cursor: grabbing; }
+        .dropzone { transition: all 0.2s ease; }
+        .dropzone.hovered { background-color: #eff6ff; border-color: #3b82f6; transform: scale(1.02); }
+    </style>
+</head>
+<body class="bg-slate-100 font-sans text-slate-800 min-h-screen p-4 pb-12">
+
+    <!-- Container Utama -->
+    <div class="max-w-4xl mx-auto bg-white shadow-xl rounded-2xl overflow-hidden my-6 border border-slate-200">
+        
+        <!-- Header LKPD -->
+        <div class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white p-6 text-center">
+            <span class="bg-blue-500 text-xs font-semibold px-3 py-1 rounded-full uppercase tracking-wider">Lembar Kerja Peserta Didik (LKPD) SD Kelas 5/6</span>
+            <h1 class="text-2xl md:text-3xl font-bold mt-2">Mata Kita & Cara Kerjanya 👀</h1>
+            <p class="text-blue-100 text-sm mt-1">Materi: Bagian-Bagian Mata, Fungsi, dan Kelainan Mata</p>
+        </div>
+
+        <!-- Identitas Siswa -->
+        <div class="bg-blue-50 p-4 border-b border-blue-100 grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+                <label class="block text-xs font-bold text-blue-900 uppercase mb-1">Nama Lengkap:</label>
+                <input type="text" id="namaSiswa" placeholder="Ketik nama siswa di sini..." class="w-full px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+            </div>
+            <div>
+                <label class="block text-xs font-bold text-blue-900 uppercase mb-1">Kelas:</label>
+                <input type="text" id="kelasSiswa" placeholder="Contoh: Kelas 5 A" class="w-full px-3 py-2 border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white">
+            </div>
+        </div>
+
+        <div class="p-6 space-y-8">
+            
+            <!-- GAMBAR ILUSTRASI BAGIAN MATA -->
+            <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 text-center">
+                <h2 class="text-sm font-bold text-slate-700 uppercase mb-3">🖼️ Perhatikan Gambar Anatomi Mata Berikut:</h2>
+                <div class="flex justify-center">
+                    <!-- Ilustrasi vektor struktur mata ramah anak -->
+                    <svg viewBox="0 0 500 280" class="w-full max-w-lg h-auto bg-white rounded-lg shadow-inner border p-2">
+                        <!-- Bola Mata Luar / Kornea -->
+                        <path d="M150,140 C150,70 230,50 320,80 C390,105 420,160 420,140 C420,200 370,230 310,230 C220,230 150,210 150,140 Z" fill="#e0f2fe" stroke="#0284c7" stroke-width="3"/>
+                        <!-- Kornea Menonjol -->
+                        <path d="M150,140 C130,160 130,120 150,140" fill="none" stroke="#0284c7" stroke-width="3"/>
+                        <!-- Iris -->
+                        <path d="M190,95 C170,120 170,160 190,185" fill="none" stroke="#2563eb" stroke-width="12" stroke-linecap="round"/>
+                        <!-- Pupil -->
+                        <line x1="185" y1="125" x2="185" y2="155" stroke="#0f172a" stroke-width="8" stroke-linecap="round"/>
+                        <!-- Lensa -->
+                        <ellipse cx="220" cy="140" rx="12" ry="35" fill="#fef08a" stroke="#ca8a04" stroke-width="2"/>
+                        <!-- Retina (Bagian Belakang) -->
+                        <path d="M380,95 C400,120 400,160 380,185" fill="none" stroke="#ef4444" stroke-width="6" stroke-linecap="round"/>
+                        <!-- Saraf Optik -->
+                        <path d="M410,130 L460,110 M410,150 L460,170" stroke="#64748b" stroke-width="6" stroke-linecap="round"/>
+                        
+                        <!-- Keterangan Teks / Label -->
+                        <text x="130" y="70" font-size="12" font-weight="bold" fill="#0369a1">1. Kornea</text>
+                        <line x1="150" y1="90" x2="170" y2="110" stroke="#94a3b8" stroke-dasharray="2,2"/>
+                        
+                        <text x="120" y="210" font-size="12" font-weight="bold" fill="#2563eb">2. Iris</text>
+                        <line x1="165" y1="195" x2="180" y2="160" stroke="#94a3b8" stroke-dasharray="2,2"/>
+                        
+                        <text x="200" y="45" font-size="12" font-weight="bold" fill="#ca8a04">3. Pupil & Lensa</text>
+                        <line x1="220" y1="55" x2="220" y2="100" stroke="#94a3b8" stroke-dasharray="2,2"/>
+                        
+                        <text x="370" y="55" font-size="12" font-weight="bold" fill="#ef4444">4. Retina</text>
+                        <line x1="390" y1="65" x2="385" y2="110" stroke="#94a3b8" stroke-dasharray="2,2"/>
+                    </svg>
+                </div>
+            </div>
+
+            <!-- BAGIAN 1: BAGIAN MATA & FUNGSI -->
+            <div>
+                <h2 class="text-lg font-bold text-slate-800 border-b pb-2 flex items-center gap-2">
+                    <span class="bg-blue-600 text-white w-6 h-6 rounded-full inline-flex items-center justify-center text-sm">1</span>
+                    Pasangkan Fungsi dengan Bagian Mata yang Tepat!
+                </h2>
+                <p class="text-xs text-slate-500 mt-1 mb-4">Seret (drag) kotak nama bagian mata di bawah ke dalam kotak fungsi yang sesuai.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Pilihan Item (Draggable) -->
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col gap-2">
+                        <span class="text-xs font-bold text-slate-500 uppercase">Pilihan Jawaban:</span>
+                        <div id="source-bagian" class="flex flex-col gap-2 min-h-[200px]">
+                            <div draggable="true" ondragstart="drag(event)" id="item-kornea" class="draggable bg-white p-3 rounded-lg border border-slate-300 shadow-sm text-sm font-medium hover:border-blue-500">Kornea</div>
+                            <div draggable="true" ondragstart="drag(event)" id="item-pupil" class="draggable bg-white p-3 rounded-lg border border-slate-300 shadow-sm text-sm font-medium hover:border-blue-500">Pupil</div>
+                            <div draggable="true" ondragstart="drag(event)" id="item-iris" class="draggable bg-white p-3 rounded-lg border border-slate-300 shadow-sm text-sm font-medium hover:border-blue-500">Iris</div>
+                            <div draggable="true" ondragstart="drag(event)" id="item-lensa" class="draggable bg-white p-3 rounded-lg border border-slate-300 shadow-sm text-sm font-medium hover:border-blue-500">Lensa Mata</div>
+                            <div draggable="true" ondragstart="drag(event)" id="item-retina" class="draggable bg-white p-3 rounded-lg border border-slate-300 shadow-sm text-sm font-medium hover:border-blue-500">Retina</div>
+                        </div>
+                    </div>
+
+                    <!-- Kolom Target Soal 1 -->
+                    <div class="md:col-span-2 space-y-3">
+                        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between bg-slate-50 p-3 rounded-lg border text-sm gap-2">
+                            <span>Bagian luar bening yang melindungi mata dan memfokuskan cahaya.</span>
+                            <div class="dropzone w-full sm:w-48 h-10 border-2 border-dashed border-slate-300 rounded-lg flex items-center justify-center bg-white text-xs font-medium text-slate-400" ondragover="allowDrop(event)" ondragleave="removeHover(event)" ondrop="drop(event, 'item-kornea')">Letakkan di sini</div>
+                        </div>
+                        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between bg-slate-50 p-3 rounded-lg border text-sm gap-2">
+                            <span>Lubang kecil tempat masuknya cahaya ke dalam mata.</span>
+                            <div class="dropzone w-full sm:w-48 h-10 border-2 border-dashed border-slate-300 rounded-lg flex items-center justify-center bg-white text-xs font-medium text-slate-400" ondragover="allowDrop(event)" ondragleave="removeHover(event)" ondrop="drop(event, 'item-pupil')">Letakkan di sini</div>
+                        </div>
+                        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between bg-slate-50 p-3 rounded-lg border text-sm gap-2">
+                            <span>Bagian berwarna pada mata yang mengatur jumlah cahaya masuk.</span>
+                            <div class="dropzone w-full sm:w-48 h-10 border-2 border-dashed border-slate-300 rounded-lg flex items-center justify-center bg-white text-xs font-medium text-slate-400" ondragover="allowDrop(event)" ondragleave="removeHover(event)" ondrop="drop(event, 'item-iris')">Letakkan di sini</div>
+                        </div>
+                        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between bg-slate-50 p-3 rounded-lg border text-sm gap-2">
+                            <span>Berfungsi memfokuskan cahaya agar jatuh tepat di bagian belakang mata.</span>
+                            <div class="dropzone w-full sm:w-48 h-10 border-2 border-dashed border-slate-300 rounded-lg flex items-center justify-center bg-white text-xs font-medium text-slate-400" ondragover="allowDrop(event)" ondragleave="removeHover(event)" ondrop="drop(event, 'item-lensa')">Letakkan di sini</div>
+                        </div>
+                        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between bg-slate-50 p-3 rounded-lg border text-sm gap-2">
+                            <span>Lapisan peka cahaya yang menangkap bayangan benda.</span>
+                            <div class="dropzone w-full sm:w-48 h-10 border-2 border-dashed border-slate-300 rounded-lg flex items-center justify-center bg-white text-xs font-medium text-slate-400" ondragover="allowDrop(event)" ondragleave="removeHover(event)" ondrop="drop(event, 'item-retina')">Letakkan di sini</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BAGIAN 2: KELAINAN MATA -->
+            <div>
+                <h2 class="text-lg font-bold text-slate-800 border-b pb-2 flex items-center gap-2">
+                    <span class="bg-blue-600 text-white w-6 h-6 rounded-full inline-flex items-center justify-center text-sm">2</span>
+                    Pasangkan Jenis Kelainan Mata & Solusinya!
+                </h2>
+                <p class="text-xs text-slate-500 mt-1 mb-4">Seret nama gangguan mata ke keterangan gejala yang sesuai.</p>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- Pilihan Item Kelainan -->
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200 flex flex-col gap-2">
+                        <span class="text-xs font-bold text-slate-500 uppercase">Pilihan Kelainan:</span>
+                        <div id="source-kelainan" class="flex flex-col gap-2 min-h-[150px]">
+                            <div draggable="true" ondragstart="drag(event)" id="item-miopi" class="draggable bg-white p-3 rounded-lg border border-slate-300 shadow-sm text-sm font-medium hover:border-blue-500">Miopi (Rabun Jauh)</div>
+                            <div draggable="true" ondragstart="drag(event)" id="item-hipermetropi" class="draggable bg-white p-3 rounded-lg border border-slate-300 shadow-sm text-sm font-medium hover:border-blue-500">Hipermetropi (Rabun Dekat)</div>
+                            <div draggable="true" ondragstart="drag(event)" id="item-butawarna" class="draggable bg-white p-3 rounded-lg border border-slate-300 shadow-sm text-sm font-medium hover:border-blue-500">Buta Warna</div>
+                        </div>
+                    </div>
+
+                    <!-- Kolom Target Soal 2 -->
+                    <div class="md:col-span-2 space-y-3">
+                        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between bg-slate-50 p-3 rounded-lg border text-sm gap-2">
+                            <span>Tidak dapat melihat benda yang berada pada jarak jauh dengan jelas (ditolong kacamata cekung).</span>
+                            <div class="dropzone w-full sm:w-48 h-10 border-2 border-dashed border-slate-300 rounded-lg flex items-center justify-center bg-white text-xs font-medium text-slate-400" ondragover="allowDrop(event)" ondragleave="removeHover(event)" ondrop="drop(event, 'item-miopi')">Letakkan di sini</div>
+                        </div>
+                        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between bg-slate-50 p-3 rounded-lg border text-sm gap-2">
+                            <span>Tidak dapat melihat benda yang dekat dengan jelas (ditolong kacamata cembung).</span>
+                            <div class="dropzone w-full sm:w-48 h-10 border-2 border-dashed border-slate-300 rounded-lg flex items-center justify-center bg-white text-xs font-medium text-slate-400" ondragover="allowDrop(event)" ondragleave="removeHover(event)" ondrop="drop(event, 'item-hipermetropi')">Letakkan di sini</div>
+                        </div>
+                        <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between bg-slate-50 p-3 rounded-lg border text-sm gap-2">
+                            <span>Kesulitan membedakan warna tertentu, seperti merah atau hijau.</span>
+                            <div class="dropzone w-full sm:w-48 h-10 border-2 border-dashed border-slate-300 rounded-lg flex items-center justify-center bg-white text-xs font-medium text-slate-400" ondragover="allowDrop(event)" ondragleave="removeHover(event)" ondrop="drop(event, 'item-butawarna')">Letakkan di sini</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tombol Periksa & Hasil -->
+            <div class="pt-4 border-t flex flex-col items-center justify-center gap-4">
+                <button id="btnKirim" onclick="periksaJawaban()" class="bg-blue-600 hover:bg-blue-700 text-white font-bold px-8 py-3 rounded-xl shadow-lg transition-all transform hover:scale-105">
+                    ✨ Periksa & Kirim Jawaban
+                </button>
+                <div id="hasilContainer" class="hidden text-center p-4 rounded-xl w-full max-w-md"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- JavaScript Logika Drag & Drop & Google Sheets API -->
+    <script>
+        // GANTI URL DI BAWAH INI DENGAN URL WEB APP GOOGLE APPS SCRIPT ANDA
+        const scriptURL = 'MASUKKAN_URL_GOOGLE_APPS_SCRIPT_DISINI';
+
+        function allowDrop(ev) {
+            ev.preventDefault();
+            ev.currentTarget.classList.add('hovered');
+        }
+
+        function removeHover(ev) {
+            ev.currentTarget.classList.remove('hovered');
+        }
+
+        function drag(ev) {
+            ev.dataTransfer.setData("text", ev.target.id);
+        }
+
+        function drop(ev, expectedId) {
+            ev.preventDefault();
+            ev.currentTarget.classList.remove('hovered');
+            
+            let data = ev.dataTransfer.getData("text");
+            let target = ev.currentTarget;
+
+            if (target.children.length > 0 && target.children[0].classList.contains('draggable')) {
+                let existingItem = target.children[0];
+                document.getElementById('source-bagian').appendChild(existingItem);
+            }
+
+            let draggedElement = document.getElementById(data);
+            target.innerHTML = '';
+            target.appendChild(draggedElement);
+            
+            target.dataset.answer = data;
+            target.dataset.correct = (data === expectedId) ? "true" : "false";
+        }
+
+        function periksaJawaban() {
+            let nama = document.getElementById('namaSiswa').value.trim();
+            let kelas = document.getElementById('kelasSiswa').value.trim();
+
+            if (!nama || !kelas) {
+                alert("Mohon isi Nama dan Kelas terlebih dahulu ya!");
+                return;
+            }
+
+            let dropzones = document.querySelectorAll('.dropzone');
+            let totalSoal = dropzones.length;
+            let skorBenar = 0;
+            let belumTerjawab = 0;
+
+            dropzones.forEach(zone => {
+                if (!zone.dataset.answer) {
+                    belumTerjawab++;
+                } else if (zone.dataset.correct === "true") {
+                    skorBenar++;
+                }
+            });
+
+            let hasilContainer = document.getElementById('hasilContainer');
+            hasilContainer.classList.remove('hidden');
+
+            if (belumTerjawab > 0) {
+                hasilContainer.className = "text-center p-4 rounded-xl w-full max-w-md bg-amber-50 border border-amber-200 text-amber-800";
+                hasilContainer.innerHTML = `<h3 class="font-bold text-lg">⚠️ Masih Ada yang Kosong!</h3><p class="text-sm mt-1">Lengkapi semua ${belumTerjawab} kotak kosong sebelum mengirim jawaban.</p>`;
+                return;
+            }
+
+            let nilaiAkhir = Math.round((skorBenar / totalSoal) * 100);
+            let keteranganStatus = (nilaiAkhir === 100) ? "Sempurna (100)" : `Tuntas Sebagian (${skorBenar}/${totalSoal})`;
+
+            // Tampilkan pesan loading
+            let btnKirim = document.getElementById('btnKirim');
+            btnKirim.disabled = true;
+            btnKirim.innerText = "Mengirim ke Guru...";
+
+            // Kirim data ke Google Sheets jika URL sudah diisi
+            if (scriptURL !== 'https://script.google.com/macros/s/AKfycbzeXD42S7KmE9CzUhHCfgaXwlVarjF8vIMZX_WhP7x5EKmSxona4zyzcBMweQ0mjokbmQ/exec') {
+                const formData = {
+                    nama: nama,
+                    kelas: kelas,
+                    skor: nilaiAkhir,
+                    keterangan: keteranganStatus
+                };
+
+                fetch(scriptURL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(formData)
+                })
+                .then(() => {
+                    tampilkanHasil(nama, nilaiAkhir, skorBenar, totalSoal, true);
+                })
+                .catch(error => {
+                    console.error('Error!', error.message);
+                    tampilkanHasil(nama, nilaiAkhir, skorBenar, totalSoal, false);
+                });
+            } else {
+                // Mode offline (tanpa terhubung spreadsheet jika URL belum diatur)
+                tampilkanHasil(nama, nilaiAkhir, skorBenar, totalSoal, false);
+            }
+        }
+
+        function tampilkanHasil(nama, nilaiAkhir, skorBenar, totalSoal, terkirim) {
+            let hasilContainer = document.getElementById('hasilContainer');
+            let statusKirimText = terkirim ? "✅ Nilai berhasil tersimpan di Spreadsheet Guru!" : "⚠️ Mode Offline (Nilai tidak terkirim otomatis).";
+
+            if (nilaiAkhir === 100) {
+                hasilContainer.className = "text-center p-4 rounded-xl w-full max-w-md bg-emerald-50 border border-emerald-200 text-emerald-800";
+                hasilContainer.innerHTML = `<h3 class="font-bold text-lg">🎉 Hebat, ${nama}!</h3><p class="text-sm mt-1">Skor Kamu: <strong>${nilaiAkhir}</strong></p><p class="text-xs mt-2 text-emerald-600 font-semibold">${statusKirimText}</p>`;
+            } else {
+                hasilContainer.className = "text-center p-4 rounded-xl w-full max-w-md bg-blue-50 border border-blue-200 text-blue-800";
+                hasilContainer.innerHTML = `<h3 class="font-bold text-lg">💡 Kerja Bagus, ${nama}!</h3><p class="text-sm mt-1">Skor Kamu: <strong>${nilaiAkhir}</strong> (${skorBenar} dari ${totalSoal} benar)</p><p class="text-xs mt-2 text-blue-600 font-semibold">${statusKirimText}</p>`;
+            }
+            
+            document.getElementById('btnKirim').innerText = "Terkirim / Selesai";
+        }
+    </script>
+</body>
+</html>
