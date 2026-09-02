@@ -195,7 +195,7 @@
     <!-- JavaScript Logika Drag & Drop & Google Sheets API -->
     <script>
         // GANTI URL DI BAWAH INI DENGAN URL WEB APP GOOGLE APPS SCRIPT ANDA
-        const scriptURL = 'https://script.google.com/macros/s/AKfycbxexGqE2s8Q5VLYCDIvPfpdg9QrnIf2ZwbKj-D9fPZJSkLHnD4DE2m4nUUSXzsP55m8/exec';
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxW91D9DK9KxtauHe_E_E-EnVCEmb8yAdIXh8ZXI9Xdztaq9coQihf1fmHJF37lL16a/exec';
 
         function allowDrop(ev) {
             ev.preventDefault();
@@ -226,7 +226,7 @@
             target.innerHTML = '';
             target.appendChild(draggedElement);
             
-            // Mengubah warna latar belakang dropzone otomatis menjadi nuansa merah darah saat gambar/jawaban diletakkan
+            // Mengubah warna latar belakang dropzone otomatis menjadi nuansa merah darah saat jawaban diletakkan
             target.className = "dropzone w-full sm:w-44 h-11 sm:h-10 border-2 border-red-700 rounded-lg flex items-center justify-center bg-red-50 text-xs font-semibold text-red-900 shadow-sm transition-all shrink-0";
             
             target.dataset.answer = data;
@@ -267,27 +267,23 @@
             let nilaiAkhir = Math.round((skorBenar / totalSoal) * 100);
             let keteranganStatus = (nilaiAkhir === 100) ? "Sempurna (100)" : `Tuntas Sebagian (${skorBenar}/${totalSoal})`;
 
-            // Tampilkan pesan loading
             let btnKirim = document.getElementById('btnKirim');
             btnKirim.disabled = true;
             btnKirim.innerText = "Mengirim ke Guru...";
 
-            // Kirim data ke Google Sheets jika URL sudah diisi
-            if (scriptURL !== 'https://script.google.com/macros/s/AKfycbxexGqE2s8Q5VLYCDIvPfpdg9QrnIf2ZwbKj-D9fPZJSkLHnD4DE2m4nUUSXzsP55m8/exec') {
-                const formData = {
-                    nama: nama,
-                    kelas: kelas,
-                    skor: nilaiAkhir,
-                    keterangan: keteranganStatus
-                };
+            // Mengirim data menggunakan URLSearchParams agar kompatibel dengan Apps Script baru
+            if (scriptURL !== 'https://script.google.com/macros/s/AKfycbxW91D9DK9KxtauHe_E_E-EnVCEmb8yAdIXh8ZXI9Xdztaq9coQihf1fmHJF37lL16a/exec') {
+                const formData = new URLSearchParams();
+                formData.append('nama', nama);
+                formData.append('kelas', kelas);
+                formData.append('skor', nilaiAkhir);
+                formData.append('keterangan', keteranganStatus);
 
                 fetch(scriptURL, {
                     method: 'POST',
-                    mode: 'no-cors',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(formData)
+                    body: formData
                 })
-                .then(() => {
+                .then(response => {
                     tampilkanHasil(nama, nilaiAkhir, skorBenar, totalSoal, true);
                 })
                 .catch(error => {
@@ -295,7 +291,6 @@
                     tampilkanHasil(nama, nilaiAkhir, skorBenar, totalSoal, false);
                 });
             } else {
-                // Mode offline (tanpa terhubung spreadsheet jika URL belum diatur)
                 tampilkanHasil(nama, nilaiAkhir, skorBenar, totalSoal, false);
             }
         }
